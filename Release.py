@@ -33,7 +33,7 @@ def f(vars : np.ndarray):   # forwatd dynamics function goes here
             mXmlDoc.write("ActiveAFO_Edited.xml")
 
             # start ForwardDynamics
-            CallOpenSimCMD = subprocess.call(["opensim-cmd", "run-tool", "test.xml"], stdout=subprocess.DEVNULL)
+            CallOpenSimCMD = subprocess.call(["opensim-cmd", "run-tool", "test.xml"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
             # analyze
