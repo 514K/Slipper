@@ -70,48 +70,50 @@ def generate1(x):   # another function for new point generation
         mmx = 100000
         mm1 = 0
         mmx1 = 1
-        print("da")
         if a[0] > mmx or a[0] < mm or a[1] > mmx or a[1] < mm or a[2] > mmx1 or a[2] < mm1 or a[3] > mmx1 or a[3] < mm1 or a[4] > mmx1 or a[4] < mm1:
-
             continue
         else: 
             k=0
             return a
 
+if __name__ == "__main__":
+    x0 =np.array([40000, 40000, 0.8, 0.8, 0.8]) # initial state
+    E = 25     # angle
+    Tmax = 1   # start of iterations
+    Tmin = 0.05     # end of iterations
 
-x0 =np.array([40000, 40000, 0.8, 0.8, 0.8]) # initial state
-E = 25     # angle
-Tmax = 1   # start of iterations
-Tmin = 0.1     # end of iterations
+    c = 0.8    # coefficient
 
-c = 0.7    # coefficient
+    t = Tmax
+    x = x0
+    while t > Tmin:
 
-t = Tmax
-x = x0
-while t > Tmin:
+        print(x, t)
+        xt = generate1(x)   # creating new point
+
+        St = np.linalg.norm(xt[0:2])    # curr norm of stiffness
+        At = np.linalg.norm(xt[2:])     # curr norm of activation
+        S = np.linalg.norm(x[0:2])  # old norm of stiffness
+        A = np.linalg.norm(x[2:])   # old norm of activation
+        try:
+            if f(xt) < E and (St < S and At < A):    # if new point is better we accept it
+                t = t * c
+                S = St
+                A = At
+                x = xt
+                continue
+            elif f(xt) < E and (St < S or At < A):  # if new point is not better we randomly choose it
+                probability = exp(- abs(At-A) / t)   # calculating probability of choosing
+                #   print(probability)
+                if random() < probability:
+                    t = t * c
+                    x = xt
+        except:
+            print(xt)
+            exit()
+        if f(xt) > E:
+            t = t * c
+        #   if the angle is more than 25 we generate new point
+
 
     print(x, t)
-    xt = generate1(x)   # creating new point
-
-    St = np.linalg.norm(xt[0:2])    # curr norm of stiffness
-    At = np.linalg.norm(xt[2:])     # curr norm of activation
-    S = np.linalg.norm(x[0:2])  # old norm of stiffness
-    A = np.linalg.norm(x[2:])   # old norm of activation
-    if f(xt) < E and (St < S and At < A):    # if new point is better we accept it
-        t = t * c
-        S = St
-        A = At
-        x = xt
-        continue
-    elif f(xt) < E and (St < S or At < A):  # if new point is not better we randomly choose it
-        probability = exp(- abs(At-A) / t)   # calculating probability of choosing
-        #   print(probability)
-        if random() < probability:
-            t = t * c
-            x = xt
-    if f(xt) > E:
-        t = t * c
-    #   if the angle is more than 25 we generate new point
-
-
-print(x, t)

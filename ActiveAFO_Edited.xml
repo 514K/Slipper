@@ -35,15 +35,15 @@
 					</ControlLinearNode>
 					<ControlLinearNode>
 						<t>0.3</t>
-						<value>0.8874449207442804</value>
+						<value>0.8139279323809571</value>
 					</ControlLinearNode>
 					<ControlLinearNode>
 						<t>0.35</t>
-						<value>0.9263827260550244</value>
+						<value>0.9037229811217569</value>
 					</ControlLinearNode>
 					<ControlLinearNode>
 						<t>0.4</t>
-						<value>0.6986023612104031</value>
+						<value>0.5722373351030775</value>
 					</ControlLinearNode>
 				</x_nodes>
 				<min_nodes />
