@@ -82,27 +82,32 @@ if __name__ == "__main__":
     Tmax = 1   # start of iterations
     Tmin = 0.05     # end of iterations
 
-    c = 0.8    # coefficient
+    c = 0.9    # coefficient
 
     t = Tmax
     x = x0
+    file = open("Res.txt", "w")
     while t > Tmin:
-
-        print(x, t)
+        
+        
         xt = generate1(x)   # creating new point
 
         St = np.linalg.norm(xt[0:2])    # curr norm of stiffness
         At = np.linalg.norm(xt[2:])     # curr norm of activation
         S = np.linalg.norm(x[0:2])  # old norm of stiffness
         A = np.linalg.norm(x[2:])   # old norm of activation
+
+        mAngle = f(xt)
+        print(x, t, mAngle)
+        file.write(str(x) + " " + str(t) + " " + str(mAngle))
         try:
-            if f(xt) < E and (St < S and At < A):    # if new point is better we accept it
+            if mAngle < E and (St < S and At < A):    # if new point is better we accept it
                 t = t * c
                 S = St
                 A = At
                 x = xt
                 continue
-            elif f(xt) < E and (St < S or At < A):  # if new point is not better we randomly choose it
+            elif mAngle < E and (St < S or At < A):  # if new point is not better we randomly choose it
                 probability = exp(- abs(At-A) / t)   # calculating probability of choosing
                 #   print(probability)
                 if random() < probability:
@@ -111,9 +116,10 @@ if __name__ == "__main__":
         except:
             print(xt)
             exit()
-        if f(xt) > E:
+        if mAngle > E:
             t = t * c
         #   if the angle is more than 25 we generate new point
 
 
-    print(x, t)
+    file.write(str(x) + " " + str(t) + " " + str(mAngle))
+    file.close()

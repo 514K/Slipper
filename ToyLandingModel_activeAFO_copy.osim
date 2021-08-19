@@ -2739,7 +2739,7 @@
 					<!--Stiffness parameters resisting rotational deviation (Nm/rad).-->
 					<rotational_stiffness>0 0 0</rotational_stiffness>
 					<!--Stiffness parameters resisting relative translation (N/m).-->
-					<translational_stiffness>21546 21546 21546</translational_stiffness><!-- kostil1 -->
+					<translational_stiffness>10852 10852 10852</translational_stiffness><!-- kostil1 -->
 					<!--Damping parameters resisting angular deviation rate. (Nm/(rad/s))-->
 					<rotational_damping>0 0 0</rotational_damping>
 					<!--Damping parameters resisting relative translational velocity. (N/(m/s))-->
@@ -2788,7 +2788,7 @@
 					<!--Stiffness parameters resisting rotational deviation (Nm/rad).-->
 					<rotational_stiffness>0 0 0</rotational_stiffness>
 					<!--Stiffness parameters resisting relative translation (N/m).-->
-					<translational_stiffness>46015 46015 46015</translational_stiffness><!-- kostil2 -->
+					<translational_stiffness>16452 16452 16452</translational_stiffness><!-- kostil2 -->
 					<!--Damping parameters resisting angular deviation rate. (Nm/(rad/s))-->
 					<rotational_damping>0 0 0</rotational_damping>
 					<!--Damping parameters resisting relative translational velocity. (N/(m/s))-->
